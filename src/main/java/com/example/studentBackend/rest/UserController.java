@@ -3,12 +3,10 @@ package com.example.studentBackend.rest;
 
 import com.example.studentBackend.biz.UserBiz;
 import com.example.studentBackend.common.mybatis.BaseController;
+import com.example.studentBackend.common.vo.ObjectRestResponse;
 import com.example.studentBackend.common.vo.TableResultResponse;
 import com.example.studentBackend.entity.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -26,5 +24,16 @@ public class UserController extends BaseController<UserBiz,User> {
     public TableResultResponse pageQuery(@RequestParam Map<String, Object> params) {
         List<User> userList = this.baseBiz.pageQuery(params);
         return new TableResultResponse<>(userList.size(), userList, params);
+    }
+
+    @PostMapping({"add"})
+    public ObjectRestResponse<User> add(@RequestBody User entity) {
+        this.baseBiz.add(entity);
+        return new ObjectRestResponse<>();
+    }
+
+    @GetMapping({"login"})
+    public ObjectRestResponse<String> login(@RequestParam String username, @RequestParam String password) {
+        return this.baseBiz.login(username, password);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.studentBackend.entity;
 
 import com.example.studentBackend.annotation.FieldToString;
-import com.example.studentBackend.common.util.SnowflakeGenId;
+import com.example.studentBackend.config.SnowflakeGenId;
 import lombok.Data;
 import tk.mybatis.mapper.annotation.KeySql;
 

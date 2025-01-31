@@ -49,11 +49,24 @@
             <version>2.2</version>
         </dependency>
 
-        <!-- 谷歌开源库 -->
+        <!-- 谷歌开源库，使用线程工厂 -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>28.2-android</version>
+        </dependency>
+
+        <!-- 加密工具类 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- 制作token令牌 -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
         </dependency>
 
         <!-- redis -->
