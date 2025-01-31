@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.studentBackend.mapper.UserMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.studentBackend.entity.User" id="userMap">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="name" column="name"/>
+        <result property="mobilePhone" column="mobile_phone"/>
+        <result property="email" column="email"/>
+        <result property="sex" column="sex"/>
+        <result property="type" column="type"/>
+        <result property="crtTime" column="crt_time"/>
+        <result property="crtUserId" column="crt_user_id"/>
+        <result property="crtUserName" column="crt_user_name"/>
+        <result property="updTime" column="upd_time"/>
+        <result property="updUserId" column="upd_user_id"/>
+        <result property="updUserName" column="upd_user_name"/>
+        <result property="attr1" column="attr1"/>
+        <result property="attr2" column="attr2"/>
+        <result property="attr3" column="attr3"/>
+        <result property="attr4" column="attr4"/>
+        <result property="version" column="version"/>
+        <result property="isDisabled" column="is_disabled"/>
+        <result property="departId" column="depart_id"/>
+        <result property="isSuperAdmin" column="is_super_admin"/>
+    </resultMap>
+
+    <select id="selectListQuery" resultMap="userMap">
+        SELECT *
+        FROM base_user
+        WHERE 1 = 1
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="mobilePhone != null and mobilePhone != ''">
+                and mobile_phone = #{mobilePhone}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="crtTime != null and crtTime != ''">
+                and crt_time = #{crtTime}
+            </if>
+            <if test="isDisabled != null and isDisabled != ''">
+                and is_disabled = #{isDisabled}
+            </if>
+            <if test="departId != null and departId != ''">
+                and depart_id = #{departId}
+            </if>
+            <if test="isSuperAdmin != null and isSuperAdmin != ''">
+                and is_super_admin = #{isSuperAdmin}
+            </if>
+     ORDER BY crt_time desc
+    </select>
+</mapper>
