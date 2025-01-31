@@ -32,8 +32,8 @@ public class UserController extends BaseController<UserBiz,User> {
         return new ObjectRestResponse<>();
     }
 
-    @GetMapping({"login"})
-    public ObjectRestResponse<String> login(@RequestParam String username, @RequestParam String password) {
+    @GetMapping({"/login/{username}/{password}"})
+    public ObjectRestResponse<String> login(@PathVariable String username, @PathVariable String password) {
         return this.baseBiz.login(username, password);
     }
 }
