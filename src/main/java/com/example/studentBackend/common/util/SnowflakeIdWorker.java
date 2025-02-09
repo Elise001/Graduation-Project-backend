@@ -1,8 +1,11 @@
 package com.example.studentBackend.common.util;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.springframework.stereotype.Component;
+
 import java.util.concurrent.*;
 
+@Component
 public class SnowflakeIdWorker {
     private final long twepoch = 1581582308098L;
     public static final long WORKER_ID_BITS = 9L;
@@ -18,6 +21,12 @@ public class SnowflakeIdWorker {
     private long datacenterId;
     private long sequence = 0L;
     private long lastTimestamp = -1L;
+
+    // 无参构造函数
+    public SnowflakeIdWorker() {
+        this.workerId = 0L; // 默认 workerId
+        this.datacenterId = 0L; // 默认 datacenterId
+    }
 
     public SnowflakeIdWorker(long workerId, long datacenterId) {
         if (workerId <= 511L && workerId >= 0L) {

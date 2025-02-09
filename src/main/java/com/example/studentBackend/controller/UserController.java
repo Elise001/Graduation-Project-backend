@@ -1,4 +1,4 @@
-package com.example.studentBackend.rest;
+package com.example.studentBackend.controller;
 
 
 import com.example.studentBackend.biz.UserBiz;
@@ -26,7 +26,7 @@ public class UserController extends BaseController<UserBiz,User> {
         return new TableResultResponse<>(userList.size(), userList, params);
     }
 
-    @PostMapping({"add"})
+    @PostMapping({"/add"})
     public ObjectRestResponse<User> add(@RequestBody User entity) {
         this.baseBiz.add(entity);
         return new ObjectRestResponse<>();
