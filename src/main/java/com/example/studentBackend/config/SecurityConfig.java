@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 /**
  * 全局拦截器，过滤掉非token请求
+ * 这两个注解声明该类为拦截器类
  */
 @Configuration
 @EnableWebSecurity
@@ -26,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/login/{username}/{password}", "/user/add").permitAll() // 允许登录和注册接口
+                .antMatchers("/user/login/{username}/{password}").permitAll() // 允许登录和注册接口
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

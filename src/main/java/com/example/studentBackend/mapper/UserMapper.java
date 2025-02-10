@@ -9,6 +9,7 @@ import java.util.Map;
 
 /**
  * 系统用户表
+ * 默认数据持久层都需要加上这个注解
  * @author Savor
  * @version 2025-01-31 13:32:17
  */
