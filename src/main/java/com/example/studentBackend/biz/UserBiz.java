@@ -4,7 +4,7 @@ package com.example.studentBackend.biz;
 import com.example.studentBackend.common.mybatis.BaseBusinessBiz;
 import com.example.studentBackend.common.util.JwtUtil;
 import com.example.studentBackend.common.util.PasswordUtil;
-import com.example.studentBackend.common.vo.BusinessException;
+import com.example.studentBackend.common.vo.BaseException;
 import com.example.studentBackend.common.vo.ObjectRestResponse;
 import com.example.studentBackend.entity.User;
 import com.example.studentBackend.mapper.UserMapper;
@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public class UserBiz extends BaseBusinessBiz<UserMapper,User> {
         user.setUsername(entity.getUsername());
         List<User> users = this.selectList(user);
         if (!users.isEmpty()) {
-            throw new BusinessException("该账户名称已存在，请尝试直接登录！");
+            throw new BaseException("该账户名称已存在，请尝试直接登录！");
         }
 
         entity.setPassword(PasswordUtil.encryptPassword(entity.getPassword()));
@@ -45,20 +46,46 @@ public class UserBiz extends BaseBusinessBiz<UserMapper,User> {
         this.insertSelective(entity);
     }
 
-    public ObjectRestResponse<String> login(String username, String password) {
+    public ObjectRestResponse<HashMap> login(String username, String password) {
         User user = new User();
         user.setUsername(username);
         User user1 = this.selectList(user)
                 .stream()
                 .findFirst()
-                .orElseThrow(() -> new BusinessException("该登录账号不存在，请校验！"));
+                .orElseThrow(() -> new BaseException("该登录账号不存在，请校验！"));
         String pwdOld = user1.getPassword();
 
         if (PasswordUtil.matches(password, pwdOld)) {
             String token = jwtUtil.generateToken(username);
-            return new ObjectRestResponse<String>().data(token);
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("token", "bearer " + token);
+            return new ObjectRestResponse<HashMap>().data(hashMap);
         } else {
-            throw new BusinessException("密码错误，请校验！");
+            throw new BaseException("密码错误，请校验！");
         }
+    }
+
+    public ObjectRestResponse<User> userInfo(String token) {
+        if (token == null || !token.startsWith("Bearer ")) {
+            throw new BaseException("请求参数异常，请重新登录！");
+        }
+
+        String jwt = token.substring(7);
+        String username = jwtUtil.extractUsername(jwt);
+
+        if (username == null) {
+            throw new BaseException("错误的token信息~~~~~~~~");
+        }
+
+        User user = new User();
+        user.setUsername(username);
+
+        User user1 = this.selectOne(user);
+
+        if (user1 == null) {
+            throw new BaseException("该账号已被删除，请联系管理员！");
+        }
+
+        return new ObjectRestResponse<User>().data(user1);
     }
 }

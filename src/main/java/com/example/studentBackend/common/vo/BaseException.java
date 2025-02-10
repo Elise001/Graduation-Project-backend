@@ -1,11 +1,13 @@
 package com.example.studentBackend.common.vo;
 
+import lombok.Getter;
+
+/**
+ * 手动捕获的异常返回信息
+ */
+@Getter
 public class BaseException extends RuntimeException {
     private int status = 500;
-
-    public int getStatus() {
-        return this.status;
-    }
 
     public void setStatus(int status) {
         this.status = status;
@@ -21,6 +23,7 @@ public class BaseException extends RuntimeException {
 
     public BaseException(String message) {
         super(message);
+        this.status = 30101;
     }
 
     public BaseException(String message, Throwable cause) {

@@ -12,7 +12,6 @@ public class BaseResponse {
     protected int status = 200;
     protected String message;
     protected boolean success = true;
-    protected String stacktrace;
 
     public BaseResponse(int status, String message) {
         this.status = status;
@@ -23,12 +22,6 @@ public class BaseResponse {
         this.status = status;
         this.message = message;
         this.success = isSuccess;
-    }
-
-    public BaseResponse(int status, String message, String stacktrace) {
-        this.status = status;
-        this.message = message;
-        this.stacktrace = stacktrace;
     }
 
     public BaseResponse() {
@@ -45,10 +38,6 @@ public class BaseResponse {
 
     public void setSuccess(boolean success) {
         this.success = success;
-    }
-
-    public void setStacktrace(String stacktrace) {
-        this.stacktrace = stacktrace;
     }
 }
 

@@ -23,11 +23,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
+    /**
+     * 在拦截器中注册 处理异常的 bean
+     */
+    @Bean
+    GlobalExceptionHandler getGlobalExceptionHandler() {
+        return new GlobalExceptionHandler();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/login/{username}/{password}").permitAll() // 允许登录和注册接口
+                .antMatchers("/user/jwt/token").permitAll() // 允许登录和注册接口
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

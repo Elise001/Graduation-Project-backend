@@ -2,7 +2,7 @@ package com.example.studentBackend.common;
 
 
 import com.example.studentBackend.biz.UserBiz;
-import com.example.studentBackend.common.vo.BusinessException;
+import com.example.studentBackend.common.vo.BaseException;
 import com.example.studentBackend.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,7 +24,7 @@ public class UserService implements UserDetailsService {
         User user1 = this.userBiz.selectList(user)
                 .stream()
                 .findFirst()
-                .orElseThrow(() -> new BusinessException("该登录账号不存在，请校验！"));
+                .orElseThrow(() -> new BaseException("恶意篡改登录用户信息，请退出重试！"));
         return new org.springframework.security.core.userdetails.User(
                 user1.getUsername(),
                 user1.getPassword(),

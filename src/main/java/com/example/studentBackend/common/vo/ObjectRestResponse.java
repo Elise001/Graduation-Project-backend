@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.MissingFormatArgumentException;
 
 /**
- * 网络请求VO封装
+ * 网络请求VO封装，继承基础返回信息
  * @param <T>
  */
 @Getter
@@ -60,6 +60,7 @@ public class ObjectRestResponse<T> extends BaseResponse {
 
     public void setData(T data) {
         this.data = data;
+        this.status = SERVER_SUCCESS_STATUS;
     }
 }
 

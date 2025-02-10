@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import tk.mybatis.mapper.genid.GenId;
 
 /**
- * 服务于持久层
+ * 雪花算法，服务于持久层，不建议在处理业务时调用
  */
 @Component
 public class SnowflakeGenId implements GenId<Long> {

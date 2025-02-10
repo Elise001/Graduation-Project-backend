@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 分页查询VO
+ * 分页查询VO，基础继承返回信息
  * @param <T>
  */
 @Getter

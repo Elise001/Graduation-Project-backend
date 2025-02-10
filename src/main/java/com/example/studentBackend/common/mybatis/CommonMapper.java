@@ -1,6 +1,6 @@
 package com.example.studentBackend.common.mybatis;
 
-import com.example.studentBackend.common.vo.BusinessException;
+import com.example.studentBackend.common.vo.BaseException;
 import tk.mybatis.mapper.additional.insert.InsertListMapper;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.ids.SelectByIdsMapper;
@@ -15,7 +15,7 @@ public interface CommonMapper<T> extends SelectByIdsMapper<T>, Mapper<T>, Insert
     default int updateByPrimaryKeyWithVersionSelective(T t) {
         int result = updateByPrimaryKeySelective(t);
         if (result == 0) {
-            throw new BusinessException("更新失败-该数据已被他人修改!");
+            throw new BaseException("更新失败-该数据已被他人修改!");
         }
         return result;
     }
@@ -29,7 +29,7 @@ public interface CommonMapper<T> extends SelectByIdsMapper<T>, Mapper<T>, Insert
     default int updateByPrimaryKeyWithVersion(T t) {
         int result = updateByPrimaryKey(t);
         if (result == 0) {
-            throw new BusinessException("更新失败-该数据已被他人修改!");
+            throw new BaseException("更新失败-该数据已被他人修改!");
         }
         return result;
     }
@@ -44,7 +44,7 @@ public interface CommonMapper<T> extends SelectByIdsMapper<T>, Mapper<T>, Insert
     default int updateByExampleWithVersionSelective(T t, Object example) {
         int result = updateByExampleSelective(t, example);
         if (result == 0) {
-            throw new BusinessException("更新失败-该数据已被他人修改!");
+            throw new BaseException("更新失败-该数据已被他人修改!");
         }
         return result;
     }
@@ -59,7 +59,7 @@ public interface CommonMapper<T> extends SelectByIdsMapper<T>, Mapper<T>, Insert
     default int updateByExampleWithVersion(T t, Object example) {
         int result = updateByExample(t, example);
         if (result == 0) {
-            throw new BusinessException("更新失败-该数据已被他人修改!");
+            throw new BaseException("更新失败-该数据已被他人修改!");
         }
         return result;
     }
@@ -73,7 +73,7 @@ public interface CommonMapper<T> extends SelectByIdsMapper<T>, Mapper<T>, Insert
     default int deleteByPrimaryKeyWithVersion(T t) {
         int result = deleteByPrimaryKey(t);
         if (result == 0) {
-            throw new BusinessException("删除失败-该数据已被他人修改!");
+            throw new BaseException("删除失败-该数据已被他人修改!");
         }
         return result;
     }
@@ -87,7 +87,7 @@ public interface CommonMapper<T> extends SelectByIdsMapper<T>, Mapper<T>, Insert
     default int deleteWithVersion(T t) {
         int result = delete(t);
         if (result == 0) {
-            throw new BusinessException("删除失败-该数据已被他人修改!");
+            throw new BaseException("删除失败-该数据已被他人修改!");
         }
         return result;
     }

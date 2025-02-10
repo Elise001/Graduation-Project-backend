@@ -8,6 +8,7 @@ import com.example.studentBackend.common.vo.TableResultResponse;
 import com.example.studentBackend.entity.User;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +33,14 @@ public class UserController extends BaseController<UserBiz,User> {
         return new ObjectRestResponse<>();
     }
 
-    @GetMapping({"/login/{username}/{password}"})
-    public ObjectRestResponse<String> login(@PathVariable String username, @PathVariable String password) {
-        return this.baseBiz.login(username, password);
+    @PostMapping({"/jwt/token"})
+    public ObjectRestResponse<HashMap> login(@RequestBody User entity) {
+        return this.baseBiz.login(entity.getUsername(), entity.getPassword());
+    }
+
+    @GetMapping({"/userInfo/{token}"})
+    @ResponseBody
+    public ObjectRestResponse<User> userInfo(@PathVariable String token) {
+        return this.baseBiz.userInfo(token);
     }
 }

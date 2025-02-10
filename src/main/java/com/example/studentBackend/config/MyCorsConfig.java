@@ -15,7 +15,7 @@ public class MyCorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://localhost:9000");
+        corsConfiguration.addAllowedOrigin("http://localhost:9000/");
         corsConfiguration.setAllowCredentials(true); //允许cookies
         corsConfiguration.addAllowedMethod("*"); // 请求方式
         corsConfiguration.addAllowedHeader("*"); // 请求头

@@ -1,6 +1,7 @@
 package com.example.studentBackend.common.util;
 
 import com.example.studentBackend.common.UserService;
+import com.example.studentBackend.common.vo.BaseException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 身份验证过滤器
+ */
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -46,8 +50,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 usernamePasswordAuthenticationToken
                         .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            } else {
+                throw new BaseException("身份验证失败", 401);
             }
         }
+
         chain.doFilter(request, response);
     }
 }
