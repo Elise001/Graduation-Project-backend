@@ -38,9 +38,9 @@ public class UserController extends BaseController<UserBiz,User> {
         return this.baseBiz.login(entity.getUsername(), entity.getPassword());
     }
 
-    @GetMapping({"/userInfo/{token}"})
+    @GetMapping({"/userInfo"})
     @ResponseBody
-    public ObjectRestResponse<User> userInfo(@PathVariable String token) {
+    public ObjectRestResponse<User> userInfo(@RequestParam String token) {
         return this.baseBiz.userInfo(token);
     }
 }

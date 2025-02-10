@@ -66,7 +66,7 @@ public class UserBiz extends BaseBusinessBiz<UserMapper,User> {
     }
 
     public ObjectRestResponse<User> userInfo(String token) {
-        if (token == null || !token.startsWith("Bearer ")) {
+        if (token == null || !token.startsWith("bearer ")) {
             throw new BaseException("请求参数异常，请重新登录！");
         }
 

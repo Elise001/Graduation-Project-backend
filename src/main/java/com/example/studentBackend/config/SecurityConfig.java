@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/jwt/token").permitAll() // 允许登录和注册接口
+                .antMatchers("/user/jwt/token", "/user/userInfo").permitAll() // 允许登录和token换取用户信息接口
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
