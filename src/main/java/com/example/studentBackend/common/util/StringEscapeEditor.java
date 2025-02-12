@@ -2,6 +2,9 @@ package com.example.studentBackend.common.util;
 
 import java.beans.PropertyEditorSupport;
 
+/**
+ * 处理字符串的转义操作，防止XSS攻击
+ */
 public class StringEscapeEditor extends PropertyEditorSupport {
 
     public StringEscapeEditor() {

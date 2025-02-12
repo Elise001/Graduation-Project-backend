@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.studentBackend.mapper.DepartUserMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.studentBackend.entity.DepartUser" id="departUserMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="departId" column="depart_id"/>
+        <result property="path" column="path"/>
+        <result property="isActive" column="is_active"/>
+        <result property="version" column="version"/>
+        <result property="ref1" column="ref1"/>
+        <result property="ref2" column="ref2"/>
+        <result property="ref3" column="ref3"/>
+        <result property="ref4" column="ref4"/>
+        <result property="crtUserName" column="crt_user_name"/>
+        <result property="crtUserId" column="crt_user_id"/>
+        <result property="crtTime" column="crt_time"/>
+        <result property="updUserName" column="upd_user_name"/>
+        <result property="updUserId" column="upd_user_id"/>
+        <result property="updTime" column="upd_time"/>
+    </resultMap>
+
+    <select id="selectListQuery" resultMap="departUserMap">
+        SELECT *
+        FROM base_depart_user
+        WHERE 1 = 1
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId}
+            </if>
+            <if test="departId != null and departId != ''">
+                and depart_id = #{departId}
+            </if>
+            <if test="path != null and path != ''">
+                and path = #{path}
+            </if>
+            <if test="crtTime != null and crtTime != ''">
+                and crt_time = #{crtTime}
+            </if>
+                 ORDER BY crt_time desc
+    </select>
+</mapper>

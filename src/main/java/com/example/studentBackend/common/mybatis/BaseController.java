@@ -3,17 +3,18 @@ package com.example.studentBackend.common.mybatis;
 import com.example.studentBackend.common.util.StringEscapeEditor;
 import com.example.studentBackend.common.vo.ObjectRestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@Component
-public class BaseController<Biz extends BaseBiz, Entity> {
+@RestController
+public abstract class BaseController<Biz extends BaseBiz, Entity> {
+
     @Autowired
     protected HttpServletRequest request;
+
     @Autowired
     protected Biz baseBiz;
 
@@ -24,6 +25,12 @@ public class BaseController<Biz extends BaseBiz, Entity> {
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(String.class, new StringEscapeEditor());
         binder.registerCustomEditor(String[].class, new StringEscapeEditor());
+    }
+
+    @ResponseBody
+    public ObjectRestResponse<Entity> add(@RequestBody Entity entity) {
+        this.baseBiz.insertSelective(entity);
+        return (new ObjectRestResponse()).data(entity);
     }
 
     @RequestMapping(value = {"/{id}"}, method = {RequestMethod.GET})
