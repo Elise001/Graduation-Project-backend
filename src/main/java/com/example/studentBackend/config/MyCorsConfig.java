@@ -7,7 +7,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
- * 跨域配置类
+ * 跨域配置类。大多数情况下前端403是拦截器出了问题，而非跨域
  */
 @Configuration
 public class MyCorsConfig {

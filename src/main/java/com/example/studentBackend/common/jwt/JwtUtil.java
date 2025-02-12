@@ -1,4 +1,4 @@
-package com.example.studentBackend.common.util;
+package com.example.studentBackend.common.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -30,7 +30,7 @@ public class UserService implements UserDetailsService {
             throw new BaseException("恶意篡改登录用户信息，请退出重试！");
         }
 
-        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user1.getType()));
+        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user1.getYear()));
 
         return new org.springframework.security.core.userdetails.User(
                 user1.getUsername(),

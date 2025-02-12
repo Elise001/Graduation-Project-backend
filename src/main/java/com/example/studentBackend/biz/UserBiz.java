@@ -2,7 +2,7 @@ package com.example.studentBackend.biz;
 
 
 import com.example.studentBackend.common.mybatis.BaseBusinessBiz;
-import com.example.studentBackend.common.util.JwtUtil;
+import com.example.studentBackend.common.jwt.JwtUtil;
 import com.example.studentBackend.common.util.PasswordUtil;
 import com.example.studentBackend.common.vo.BaseException;
 import com.example.studentBackend.common.vo.ObjectRestResponse;

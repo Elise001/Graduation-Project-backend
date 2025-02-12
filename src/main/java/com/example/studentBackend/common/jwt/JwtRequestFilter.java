@@ -1,4 +1,4 @@
-package com.example.studentBackend.common.util;
+package com.example.studentBackend.common.jwt;
 
 import com.example.studentBackend.common.UserService;
 import com.example.studentBackend.common.vo.BaseException;

@@ -12,7 +12,8 @@
         <result property="mobilePhone" column="mobile_phone"/>
         <result property="email" column="email"/>
         <result property="sex" column="sex"/>
-        <result property="type" column="type"/>
+        <result property="year" column="year"/>
+        <result property="major" column="major"/>
         <result property="crtTime" column="crt_time"/>
         <result property="crtUserId" column="crt_user_id"/>
         <result property="crtUserName" column="crt_user_name"/>
@@ -25,7 +26,6 @@
         <result property="attr4" column="attr4"/>
         <result property="version" column="version"/>
         <result property="isDisabled" column="is_disabled"/>
-        <result property="departId" column="depart_id"/>
         <result property="isSuperAdmin" column="is_super_admin"/>
     </resultMap>
 

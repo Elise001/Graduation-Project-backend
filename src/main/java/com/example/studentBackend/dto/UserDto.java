@@ -37,11 +37,16 @@ public class UserDto implements Serializable {
     private String email;
 
     private String sex;
-    
-	 /**
-     *用户类型
+
+    /**
+     * 年级
      */
-    private String type;
+    private String year;
+
+    /**
+     * 专业
+     */
+    private String major;
 
     private Date crtTime;
 
@@ -72,11 +77,6 @@ public class UserDto implements Serializable {
      *是否禁用
      */
     private String isDisabled;
-    
-	 /**
-     *部门
-     */
-    private Long departId;
     
 	 /**
      *超级管理员 0-否 1-是
