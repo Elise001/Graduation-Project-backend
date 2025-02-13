@@ -25,4 +25,4 @@ mapper:
 #生成token的配置信息
 jwt:
   secret: xx1WET12^%3^(WE45
-  expiration: 3600  # Token expiration time in seconds (e.g., 1 hour)
+  expiration: 36000  # Token expiration time in seconds (e.g., 1 hour)
