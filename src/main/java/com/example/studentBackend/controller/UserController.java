@@ -27,7 +27,8 @@ public class UserController extends BaseController<UserBiz,User> {
         return new TableResultResponse<>(userList.size(), userList, params);
     }
 
-    @PostMapping({"/add"})
+    @Override
+    @PostMapping({""})
     public ObjectRestResponse<User> add(@RequestBody User entity) {
         this.baseBiz.add(entity);
         return new ObjectRestResponse<>();
@@ -39,8 +40,12 @@ public class UserController extends BaseController<UserBiz,User> {
     }
 
     @GetMapping({"/userInfo"})
-    @ResponseBody
     public ObjectRestResponse<User> userInfo(@RequestParam String token) {
         return this.baseBiz.userInfo(token);
+    }
+
+    @PostMapping({"/passwordReset"})
+    public ObjectRestResponse<String> passwordReset(@RequestBody User entity) {
+        return this.baseBiz.passwordReset(entity.getId());
     }
 }

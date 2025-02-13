@@ -28,6 +28,8 @@ public abstract class BaseController<Biz extends BaseBiz, Entity> {
     }
 
     @ResponseBody
+    @RequestMapping(value = {""}, method = {RequestMethod.POST}
+    )
     public ObjectRestResponse<Entity> add(@RequestBody Entity entity) {
         this.baseBiz.insertSelective(entity);
         return (new ObjectRestResponse()).data(entity);

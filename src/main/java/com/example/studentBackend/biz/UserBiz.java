@@ -88,4 +88,13 @@ public class UserBiz extends BaseBusinessBiz<UserMapper,User> {
 
         return new ObjectRestResponse<User>().data(user1);
     }
+
+    public ObjectRestResponse<String> passwordReset(Long id) {
+        User user = new User();
+        user.setId(id);
+        user.setPassword(PasswordUtil.encryptPassword("123456"));
+        this.updateSelectiveById(user);
+
+        return new ObjectRestResponse<String>().data("重置成功");
+    }
 }
