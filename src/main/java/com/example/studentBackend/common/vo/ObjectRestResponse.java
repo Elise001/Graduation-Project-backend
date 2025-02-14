@@ -15,6 +15,7 @@ public class ObjectRestResponse<T> extends BaseResponse {
     private int status;
 
     public ObjectRestResponse() {
+        this.status = SERVER_SUCCESS_STATUS;
     }
 
     public static <T> ObjectRestResponse<T> success() {
