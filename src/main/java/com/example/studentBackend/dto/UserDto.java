@@ -1,6 +1,7 @@
 package com.example.studentBackend.dto;
 
 import com.example.studentBackend.annotation.FieldToString;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -48,6 +49,7 @@ public class UserDto implements Serializable {
      */
     private String major;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date crtTime;
 
     private String crtUserId;

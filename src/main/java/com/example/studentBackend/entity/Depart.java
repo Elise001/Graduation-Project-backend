@@ -2,6 +2,7 @@ package com.example.studentBackend.entity;
 
 import com.example.studentBackend.annotation.FieldToString;
 import com.example.studentBackend.config.SnowflakeGenId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import tk.mybatis.mapper.annotation.KeySql;
 
@@ -99,6 +100,7 @@ public class Depart implements Serializable {
      *【创建时间】
      */
     @Column(name = "crt_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date crtTime;
 	
 	 /**
@@ -118,5 +120,4 @@ public class Depart implements Serializable {
      */
     @Column(name = "upd_time")
     private Date updTime;
-	
 }
