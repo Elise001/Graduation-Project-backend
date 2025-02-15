@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.concurrent.*;
 
+/**
+ * 雪花算法工作类
+ */
 @Component
 public class SnowflakeIdWorker {
     private final long twepoch = 1581582308098L;

@@ -62,5 +62,4 @@ public abstract class BaseController<Biz extends BaseBiz, Entity> {
     public List<Entity> all() {
         return this.baseBiz.selectListAll();
     }
-
 }

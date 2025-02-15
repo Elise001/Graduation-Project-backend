@@ -88,11 +88,11 @@
         </dependency>
 
         <!-- 实体类拷贝工具 -->
-<!--        <dependency>-->
-<!--            <groupId>commons-beanutils</groupId>-->
-<!--            <artifactId>commons-beanutils</artifactId>-->
-<!--            <version>1.9.3</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.3</version>
+        </dependency>
 
         <!-- 序列化与反序列化，用于网络数据交换 -->
 <!--        <dependency>-->
