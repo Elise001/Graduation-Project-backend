@@ -4,6 +4,9 @@ package com.example.studentBackend.common.util;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * BCrypt
+ */
 public class PasswordUtil {
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

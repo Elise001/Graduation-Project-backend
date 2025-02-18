@@ -39,6 +39,11 @@ public class UserController extends BaseController<UserBiz,User> {
         return this.baseBiz.login(entity.getUsername(), entity.getPassword());
     }
 
+    @PostMapping({"/logout"})
+    public ObjectRestResponse<String> logout(@RequestParam("token") String token) {
+        return this.baseBiz.logout(token);
+    }
+
     @GetMapping({"/userInfo"})
     public ObjectRestResponse<User> userInfo(@RequestParam String token) {
         return this.baseBiz.userInfo(token);

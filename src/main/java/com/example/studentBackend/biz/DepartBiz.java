@@ -21,5 +21,4 @@ public class DepartBiz extends BaseBusinessBiz<DepartMapper,Depart> {
     public List<Depart> pageQuery(Map<String, Object> params) {
         return this.mapper.selectListQuery(params);
     }
-
 }

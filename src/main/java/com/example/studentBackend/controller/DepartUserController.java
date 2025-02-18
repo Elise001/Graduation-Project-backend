@@ -4,6 +4,7 @@ import com.example.studentBackend.biz.DepartUserBiz;
 import com.example.studentBackend.common.mybatis.BaseController;
 import com.example.studentBackend.common.vo.TableResultResponse;
 import com.example.studentBackend.entity.DepartUser;
+import com.example.studentBackend.entity.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,5 +26,11 @@ public class DepartUserController extends BaseController<DepartUserBiz, DepartUs
     public TableResultResponse pageQuery(@RequestParam Map<String, Object> params) {
         List<DepartUser> departList = this.baseBiz.pageQuery(params);
         return new TableResultResponse<>(departList.size(), departList, params);
+    }
+
+    @GetMapping({"getDepartUser"})
+    public TableResultResponse getDepartUser(@RequestParam Map<String, Object> params) {
+        List<User> userList = this.baseBiz.getDepartUser(params);
+        return new TableResultResponse<>(userList.size(), userList, params);
     }
 }

@@ -41,4 +41,14 @@
             </if>
                  ORDER BY crt_time desc
     </select>
+
+    <select id="getDepartUser" resultType="com.example.studentBackend.entity.User">
+        select du.id,u.username,u.name
+        from base_depart_user du
+        left join base_user u on du.user_id = u.id
+        where 1 = 1
+        <if test="departId != null and departId != ''">
+            and du.depart_id = #{departId}
+        </if>
+    </select>
 </mapper>

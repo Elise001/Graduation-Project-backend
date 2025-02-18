@@ -9,8 +9,10 @@ import tk.mybatis.mapper.annotation.KeySql;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -114,5 +116,7 @@ public class User implements Serializable {
      */
     @Column(name = "is_super_admin")
     private String isSuperAdmin;
-	
+
+    @Transient
+    private List<String> departCode;
 }
