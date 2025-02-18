@@ -14,5 +14,9 @@ import java.util.Map;
 @Repository
 public interface TextbookOrderMapper extends CommonMapper<TextbookOrder> {
 
-    List<TextbookOrder> selectListQuery(Map<String, Object> params);
+    List<TextbookOrder> textbookReservationQuery(Map<String, Object> params);
+
+    List<TextbookOrder> collectQuery(Map<String, Object> params);
+
+    List<TextbookOrder> refundQuery(Map<String, Object> params);
 }

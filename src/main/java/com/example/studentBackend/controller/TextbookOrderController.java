@@ -20,9 +20,21 @@ import java.util.Map;
 @RequestMapping("textbookOrder")
 public class TextbookOrderController extends BaseController<TextbookOrderBiz,TextbookOrder> {
 
-    @GetMapping({"pageQuery"})
+    @GetMapping({"textbookReservationQuery"})
     public TableResultResponse<TextbookOrder> pageQuery(@RequestParam Map<String, Object> params) {
-        List<TextbookOrder> departList = this.baseBiz.pageQuery(params);
+        List<TextbookOrder> departList = this.baseBiz.textbookReservationQuery(params);
+        return new TableResultResponse<>(departList.size(), departList, params);
+    }
+
+    @GetMapping({"collectQuery"})
+    public TableResultResponse<TextbookOrder> collectQuery(@RequestParam Map<String, Object> params) {
+        List<TextbookOrder> departList = this.baseBiz.collectQuery(params);
+        return new TableResultResponse<>(departList.size(), departList, params);
+    }
+
+    @GetMapping({"refundQuery"})
+    public TableResultResponse<TextbookOrder> refundQuery(@RequestParam Map<String, Object> params) {
+        List<TextbookOrder> departList = this.baseBiz.refundQuery(params);
         return new TableResultResponse<>(departList.size(), departList, params);
     }
 

@@ -28,10 +28,10 @@
         <result property="updTime" column="upd_time"/>
     </resultMap>
 
-    <select id="selectListQuery" resultMap="textbookOrderMap">
+    <select id="textbookReservationQuery" resultMap="textbookOrderMap">
         SELECT *
         FROM textbook_order
-        WHERE 1 = 1
+        WHERE order_status in ('00', '01')
             <if test="orderCode != null and orderCode != ''">
                 and order_code = #{orderCode}
             </if>
@@ -59,6 +59,74 @@
             <if test="crtTime != null and crtTime != ''">
                 and crt_time = #{crtTime}
             </if>
+        ORDER BY crt_time desc
+    </select>
+
+    <select id="collectQuery" resultMap="textbookOrderMap">
+        SELECT *
+        FROM textbook_order
+        WHERE order_status in ('01', '02', '03', '04')
+        <if test="orderCode != null and orderCode != ''">
+            and order_code = #{orderCode}
+        </if>
+        <if test="year != null and year != ''">
+            and year = #{year}
+        </if>
+        <if test="major != null and major != ''">
+            and major = #{major}
+        </if>
+        <if test="textbookCode != null and textbookCode != ''">
+            and textbook_code = #{textbookCode}
+        </if>
+        <if test="textbookName != null and textbookName != ''">
+            and textbook_name = #{textbookName}
+        </if>
+        <if test="count != null and count != ''">
+            and count = #{count}
+        </if>
+        <if test="price != null and price != ''">
+            and price = #{price}
+        </if>
+        <if test="orderStatus != null and orderStatus != ''">
+            and order_status = #{orderStatus}
+        </if>
+        <if test="crtTime != null and crtTime != ''">
+            and crt_time = #{crtTime}
+        </if>
+        ORDER BY crt_time desc
+    </select>
+
+    <select id="refundQuery" resultMap="textbookOrderMap">
+        SELECT *
+        FROM textbook_order
+        WHERE order_status in ('04', '05', '06', '07')
+        <if test="orderCode != null and orderCode != ''">
+            and order_code = #{orderCode}
+        </if>
+        <if test="year != null and year != ''">
+            and year = #{year}
+        </if>
+        <if test="major != null and major != ''">
+            and major = #{major}
+        </if>
+        <if test="textbookCode != null and textbookCode != ''">
+            and textbook_code = #{textbookCode}
+        </if>
+        <if test="textbookName != null and textbookName != ''">
+            and textbook_name = #{textbookName}
+        </if>
+        <if test="count != null and count != ''">
+            and count = #{count}
+        </if>
+        <if test="price != null and price != ''">
+            and price = #{price}
+        </if>
+        <if test="orderStatus != null and orderStatus != ''">
+            and order_status = #{orderStatus}
+        </if>
+        <if test="crtTime != null and crtTime != ''">
+            and crt_time = #{crtTime}
+        </if>
         ORDER BY crt_time desc
     </select>
 </mapper>

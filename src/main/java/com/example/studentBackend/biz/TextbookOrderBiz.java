@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,17 +31,33 @@ public class TextbookOrderBiz extends BaseBusinessBiz<TextbookOrderMapper,Textbo
     @Resource
     private OrderNumberUtils orderNumberUtils;
 
-    public List<TextbookOrder> pageQuery(Map<String, Object> params) {
-        return this.mapper.selectListQuery(params);
+    public List<TextbookOrder> textbookReservationQuery(Map<String, Object> params) {
+        return this.mapper.textbookReservationQuery(params);
+    }
+
+    public List<TextbookOrder> collectQuery(Map<String, Object> params) {
+        return this.mapper.collectQuery(params);
+    }
+
+    public List<TextbookOrder> refundQuery(Map<String, Object> params) {
+        return this.mapper.refundQuery(params);
     }
 
     public void add(TextbookOrder entity) {
+        TextbookOrder textbookOrder = new TextbookOrder();
+        textbookOrder.setYear(entity.getYear());
+        textbookOrder.setMajor(entity.getMajor());
+        textbookOrder.setTextbookCode(entity.getTextbookCode());
+        Long l = this.selectCount(textbookOrder);
+        if (l != 0) {
+            throw new BaseException("表中已存在年级、专业、书籍编号相同的数据！");
+        }
         entity.setOrderCode(orderNumberUtils.generate("JC"));
         entity.setOrderStatus("00");
         this.insertSelective(entity);
     }
 
-    public void batch(List<TextbookOrder> list) throws InvocationTargetException, IllegalAccessException {
+    public void batch(List<TextbookOrder> list) {
         // 使用 HashSet 来存储已有的年级+专业+教材编号组合
         Set<String> existingCombinations = this.selectListAll()
                 .stream()
