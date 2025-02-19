@@ -6,10 +6,12 @@ import com.example.studentBackend.common.vo.BaseException;
 import com.example.studentBackend.entity.TextbookManager;
 import com.example.studentBackend.entity.TextbookOrder;
 import com.example.studentBackend.mapper.TextbookOrderMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +39,18 @@ public class TextbookOrderBiz extends BaseBusinessBiz<TextbookOrderMapper,Textbo
 
     public List<TextbookOrder> collectQuery(Map<String, Object> params) {
         return this.mapper.collectQuery(params);
+    }
+
+    public List<TextbookOrder> paymentQuery(Map<String, Object> params) {
+        List<TextbookOrder> textbookOrders = this.mapper.paymentQuery(params);
+        textbookOrders.forEach(item -> {
+            if (StringUtils.isNotBlank(item.getRef1())) {
+                item.setRef2(String.valueOf(item.getPrice().multiply(item.getCount().subtract(new BigDecimal(item.getRef1())))));
+            } else {
+                item.setRef2(String.valueOf(item.getPrice().multiply(item.getCount())));
+            }
+        });
+        return textbookOrders;
     }
 
     public List<TextbookOrder> refundQuery(Map<String, Object> params) {

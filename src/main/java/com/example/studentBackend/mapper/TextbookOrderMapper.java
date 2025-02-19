@@ -19,4 +19,6 @@ public interface TextbookOrderMapper extends CommonMapper<TextbookOrder> {
     List<TextbookOrder> collectQuery(Map<String, Object> params);
 
     List<TextbookOrder> refundQuery(Map<String, Object> params);
+
+    List<TextbookOrder> paymentQuery(Map<String, Object> params);
 }

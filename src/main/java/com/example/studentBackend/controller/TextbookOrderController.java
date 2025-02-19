@@ -38,6 +38,12 @@ public class TextbookOrderController extends BaseController<TextbookOrderBiz,Tex
         return new TableResultResponse<>(departList.size(), departList, params);
     }
 
+    @GetMapping({"paymentQuery"})
+    public TableResultResponse<TextbookOrder> paymentQuery(@RequestParam Map<String, Object> params) {
+        List<TextbookOrder> departList = this.baseBiz.paymentQuery(params);
+        return new TableResultResponse<>(departList.size(), departList, params);
+    }
+
     @Override
     @PostMapping({""})
     public ObjectRestResponse<TextbookOrder> add(@RequestBody TextbookOrder entity) {
