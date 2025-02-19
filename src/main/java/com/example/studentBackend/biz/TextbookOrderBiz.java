@@ -1,5 +1,6 @@
 package com.example.studentBackend.biz;
 
+import com.example.studentBackend.annotation.EnforceProcess;
 import com.example.studentBackend.common.mybatis.BaseBusinessBiz;
 import com.example.studentBackend.common.util.OrderNumberUtils;
 import com.example.studentBackend.common.vo.BaseException;
@@ -57,6 +58,7 @@ public class TextbookOrderBiz extends BaseBusinessBiz<TextbookOrderMapper,Textbo
         return this.mapper.refundQuery(params);
     }
 
+    @EnforceProcess(orderStatus = "00")
     public void add(TextbookOrder entity) {
         TextbookOrder textbookOrder = new TextbookOrder();
         textbookOrder.setYear(entity.getYear());
@@ -66,7 +68,7 @@ public class TextbookOrderBiz extends BaseBusinessBiz<TextbookOrderMapper,Textbo
         if (l != 0) {
             throw new BaseException("表中已存在年级、专业、书籍编号相同的数据！");
         }
-        entity.setOrderCode(orderNumberUtils.generate("JC"));
+
         entity.setOrderStatus("00");
         this.insertSelective(entity);
     }
@@ -101,5 +103,45 @@ public class TextbookOrderBiz extends BaseBusinessBiz<TextbookOrderMapper,Textbo
             textbookOrders.add(item);
         }
         this.insertList(textbookOrders);
+    }
+
+    @EnforceProcess(orderStatus = "01")
+    public void studentSure(TextbookOrder entity) {
+        this.updateSelectiveById(entity);
+    }
+
+    @EnforceProcess(orderStatus = "02")
+    public void orderStatus01(TextbookOrder entity) {
+        this.updateSelectiveById(entity);
+    }
+
+    @EnforceProcess(orderStatus = "03")
+    public void orderStatus02(TextbookOrder entity) {
+        this.updateSelectiveById(entity);
+    }
+
+    @EnforceProcess(orderStatus = "04")
+    public void orderStatus03(TextbookOrder entity) {
+        this.updateSelectiveById(entity);
+    }
+
+    @EnforceProcess(orderStatus = "05")
+    public void orderStatus04(TextbookOrder entity) {
+        this.updateSelectiveById(entity);
+    }
+
+    @EnforceProcess(orderStatus = "06")
+    public void orderStatus05(TextbookOrder entity) {
+        this.updateSelectiveById(entity);
+    }
+
+    @EnforceProcess(orderStatus = "07")
+    public void orderStatus06(TextbookOrder entity) {
+        this.updateSelectiveById(entity);
+    }
+
+    @EnforceProcess(orderStatus = "08")
+    public void orderStatus07(TextbookOrder entity) {
+        this.updateSelectiveById(entity);
     }
 }
