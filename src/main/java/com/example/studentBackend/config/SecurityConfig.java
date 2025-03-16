@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .cors().and() // 启用CORS配置
                 .authorizeRequests()
-                .antMatchers("/user/jwt/token", "/user/userInfo", "/user/logout").permitAll() // 允许登录和token换取用户信息接口
+                .antMatchers("/user/jwt/token", "/user/userInfo", "/user" ).permitAll() // 允许登录和token换取用户信息接口
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()

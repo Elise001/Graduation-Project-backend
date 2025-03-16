@@ -63,10 +63,11 @@ public class TextbookOrderBiz extends BaseBusinessBiz<TextbookOrderMapper,Textbo
         TextbookOrder textbookOrder = new TextbookOrder();
         textbookOrder.setYear(entity.getYear());
         textbookOrder.setMajor(entity.getMajor());
+        textbookOrder.setRef3(entity.getRef3());
         textbookOrder.setTextbookCode(entity.getTextbookCode());
         Long l = this.selectCount(textbookOrder);
         if (l != 0) {
-            throw new BaseException("表中已存在年级、专业、书籍编号相同的数据！");
+            throw new BaseException("表中已存在年级、专业、班级书籍编号相同的数据！");
         }
 
         entity.setOrderStatus("00");
